@@ -1,0 +1,7 @@
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\bin\CMMSAMLIdPTestHarness.dll
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\bin\CMMSAMLIdPTestHarness.pdb
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\obj\Debug\ResolveAssemblyReference.cache
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\obj\Debug\CMMSAMLIdPTestHarness.dll
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\obj\Debug\CMMSAMLIdPTestHarness.pdb
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\bin\CoverMyMedsSAML20Library.dll
+c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CMMSAMLIdPTestHarness\bin\CoverMyMedsSAML20Library.pdb

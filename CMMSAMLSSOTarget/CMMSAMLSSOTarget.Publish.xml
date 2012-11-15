@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\yoyodyne\websites\CMMSSOTarget" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Yoyodyne" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/CoverMyMedsSSOTarget.dll" publishTime="12/19/2011 15:13:14" />
+    <file relUrl="PromisedLand.aspx" publishTime="12/19/2011 15:11:00" />
+    <file relUrl="Web.config" publishTime="12/19/2011 15:15:05" />
+    <file relUrl="bin/CoverMyMedsSSOTarget.pdb" publishTime="12/19/2011 15:13:14" />
+  </publishProfile>
+</publishData>

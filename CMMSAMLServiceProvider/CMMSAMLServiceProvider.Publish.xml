@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\YOYODYNE\WebSites\CoverMyMedsSSO" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Yoyodyne CoverMyMedsSSO" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/CoverMyMedsSSO.dll" publishTime="12/19/2011 12:17:14" />
+    <file relUrl="Web.config" publishTime="12/19/2011 17:30:10" />
+    <file relUrl="CMMSSODefault.aspx" publishTime="12/16/2011 12:18:05" />
+    <file relUrl="bin/CoverMyMedsSAML20Library.pdb" publishTime="12/19/2011 11:18:27" />
+    <file relUrl="bin/CoverMyMedsSAML20Library.dll" publishTime="12/19/2011 11:18:27" />
+    <file relUrl="bin/CoverMyMedsSSO.pdb" publishTime="12/19/2011 12:17:14" />
+  </publishProfile>
+</publishData>

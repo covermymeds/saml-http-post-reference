@@ -1,0 +1,5 @@
+C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLSSOTarget\bin\CMMSAMLSSOTarget.dll
+C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLSSOTarget\bin\CMMSAMLSSOTarget.pdb
+C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLSSOTarget\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLSSOTarget\obj\Debug\CMMSAMLSSOTarget.dll
+C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLSSOTarget\obj\Debug\CMMSAMLSSOTarget.pdb

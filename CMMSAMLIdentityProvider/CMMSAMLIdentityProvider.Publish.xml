@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="\\yoyodyne\websites\CMMIdPLauncher" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="YoyoDyne IdPLauncher" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/CMMSAMLIdPTestHarness.pdb" publishTime="04/02/2012 14:35:01" />
+    <file relUrl="App_Themes/Basic/Basic.css" publishTime="12/19/2011 16:17:52" />
+    <file relUrl="Web.config" publishTime="03/30/2012 15:41:26" />
+    <file relUrl="IdPLauncher.aspx" publishTime="04/04/2012 15:04:55" />
+    <file relUrl="IssueNNKeepAlive.aspx" publishTime="02/03/2012 10:29:40" />
+    <file relUrl="bin/CoverMyMedsSAML20Library.pdb" publishTime="01/30/2012 15:07:24" />
+    <file relUrl="bin/CoverMyMedsSAML20Library.dll" publishTime="01/30/2012 15:07:24" />
+    <file relUrl="App_Themes/Basic/TextBox.skin" publishTime="12/19/2011 16:15:03" />
+    <file relUrl="bin/CMMSAMLIdPTestHarness.dll" publishTime="04/02/2012 14:35:01" />
+  </publishProfile>
+</publishData>

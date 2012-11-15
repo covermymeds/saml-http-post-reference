@@ -1,0 +1,69 @@
+﻿<Response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_7647bdc9-0e53-4311-a6b5-5076d850a96f" Version="2.0" IssueInstant="2011-12-22T18:09:22.9297006Z" Destination="Recipient" xmlns="urn:oasis:names:tc:SAML:2.0:protocol">
+  <saml:Issuer>CMMTest.com</saml:Issuer>
+  <Status>
+    <StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
+  </Status>
+  <saml:Assertion Version="2.0" ID="_47303f3d-3b17-4f0f-90d7-cbc23ca53255" IssueInstant="2011-12-22T18:09:22.9317006Z">
+    <saml:Issuer>CMMTest.com</saml:Issuer>
+    <saml:Subject>
+      <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">Subject</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData Recipient="Recipient" NotOnOrAfter="2011-12-22T18:14:22.9327006Z" />
+      </saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2011-12-22T18:09:22.9327006Z" NotOnOrAfter="2011-12-22T18:14:22.9327006Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>Audience</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2011-12-22T18:09:22.9337006Z" SessionIndex="_47303f3d-3b17-4f0f-90d7-cbc23ca53255">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+    <saml:AttributeStatement>
+      <saml:Attribute Name="SessionKey" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">{2FF9E76B-6424-47FE-90BC-A8197043F089}</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="UserNID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">12345</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="NPI" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">3312345678</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="Username" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">NNUsername</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="UserLastName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">Jones</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="UserFirstName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">Fred</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="OfficeNID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">6947</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="OfficeName" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">The Des Moines Institute</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="OfficeFax" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xsd:string">614-867-5309</saml:AttributeValue>
+      </saml:Attribute>
+    </saml:AttributeStatement>
+  </saml:Assertion>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="#_47303f3d-3b17-4f0f-90d7-cbc23ca53255">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+          <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>VJRaSAD5veKO7CWKdiU3qmPFSdQ=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>GVRL/kSqduHnHvTjwHT5of9wMwggeWWqhygwaiZjH68ALQ2fmszuMFvpDl85bOBzGLNomsRUuPz2+qUZY/QTT9EYG7m6PnRp2PiKgLK0HFYJw4WF63KC5dlKrGB1jCJVcATxYqW7khvAicFwcP9z7dSg+W/X8u73EXBXL45MSsc=</SignatureValue>
+  </Signature>
+</Response>
