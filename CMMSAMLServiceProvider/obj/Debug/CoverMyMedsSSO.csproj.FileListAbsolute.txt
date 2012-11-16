@@ -1,7 +1,0 @@
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\bin\CoverMyMedsSSO.dll
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\bin\CoverMyMedsSSO.pdb
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\obj\Debug\ResolveAssemblyReference.cache
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\obj\Debug\CoverMyMedsSSO.dll
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\obj\Debug\CoverMyMedsSSO.pdb
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\bin\CoverMyMedsSAML20Library.dll
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSO\bin\CoverMyMedsSAML20Library.pdb

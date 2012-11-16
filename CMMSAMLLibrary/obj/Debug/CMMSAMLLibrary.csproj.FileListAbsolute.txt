@@ -1,9 +1,0 @@
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLLibrary\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLLibrary\bin\Debug\CMMSAMLLibrary.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLLibrary\bin\Debug\CMMSAMLLibrary.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLLibrary\obj\Debug\CMMSAMLLibrary.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLLibrary\obj\Debug\CMMSAMLLibrary.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\cmm_dotnet_saml_identity_provider\CMMSAMLLibrary\bin\Debug\CMMSAMLLibrary.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\cmm_dotnet_saml_identity_provider\CMMSAMLLibrary\bin\Debug\CMMSAMLLibrary.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\cmm_dotnet_saml_identity_provider\CMMSAMLLibrary\obj\Debug\CMMSAMLLibrary.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\cmm_dotnet_saml_identity_provider\CMMSAMLLibrary\obj\Debug\CMMSAMLLibrary.pdb

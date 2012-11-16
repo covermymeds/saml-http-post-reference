@@ -1,5 +1,0 @@
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSOTarget\bin\CoverMyMedsSSOTarget.dll
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSOTarget\bin\CoverMyMedsSSOTarget.pdb
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSOTarget\obj\Debug\ResolveAssemblyReference.cache
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSOTarget\obj\Debug\CoverMyMedsSSOTarget.dll
-c:\users\dbrown\documents\visual studio 2010\Projects\NaviNetSAMLImp\CoverMyMedsSSOTarget\obj\Debug\CoverMyMedsSSOTarget.pdb

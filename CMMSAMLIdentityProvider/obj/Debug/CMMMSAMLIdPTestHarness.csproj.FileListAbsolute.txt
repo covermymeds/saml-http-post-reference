@@ -1,7 +1,0 @@
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\bin\CMMSAMLIdPTestHarness.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\bin\CMMSAMLIdPTestHarness.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\bin\CoverMyMedsSAML20Library.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\bin\CoverMyMedsSAML20Library.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\obj\Debug\CMMSAMLIdPTestHarness.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLIdPTestHarness\obj\Debug\CMMSAMLIdPTestHarness.pdb

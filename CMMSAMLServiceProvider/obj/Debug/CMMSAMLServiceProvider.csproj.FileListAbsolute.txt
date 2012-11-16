@@ -1,7 +1,0 @@
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\bin\CMMSAMLServiceProvider.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\bin\CMMSAMLServiceProvider.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\bin\CMMSAMLLibrary.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\bin\CMMSAMLLibrary.pdb
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\obj\Debug\CMMSAMLServiceProvider.dll
-C:\Users\dbrown\Documents\Visual Studio 2010\Projects\SAMLIdentityProvider\CMMSAMLServiceProvider\obj\Debug\CMMSAMLServiceProvider.pdb
