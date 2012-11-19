@@ -1,4 +1,10 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="CertificateUtility.cs" company="CoverMyMeds">
+//  Copyright (c) 2012 CoverMyMeds.  All rights reserved.
+//  This code is presented as reference material only.
+// </copyright>
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,6 +12,9 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace CoverMyMeds.SAML.Library
 {
+    /// <summary>
+    /// Methods specific to interacting with certificate on the machine
+    /// </summary>
     public class CertificateUtility
     {
 
@@ -15,7 +24,7 @@ namespace CoverMyMeds.SAML.Library
         /// <param name="CertSubjectName">Certificate name</param>
         /// <param name="CertStoreName">Which certificate store to look in</param>
         /// <param name="CertStoreLocation">Where in the store to look for the certificate</param>
-        /// <returns></returns>
+        /// <returns>X509 certificate to use for signing XML within a SAML Response</returns>
         public static X509Certificate2 GetCertificateForSigning(string CertSubjectName, StoreName CertStoreName, StoreLocation CertStoreLocation)
         {
             X509Certificate2 XMLSigningCert = null;

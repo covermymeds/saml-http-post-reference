@@ -1,4 +1,10 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="ServiceProviderError.aspx.cs" company="CoverMyMeds">
+//  Copyright (c) 2012 CoverMyMeds.  All rights reserved.
+//  This code is presented as reference material only.
+// </copyright>
+//-----------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
