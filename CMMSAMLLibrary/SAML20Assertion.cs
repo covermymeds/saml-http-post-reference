@@ -17,11 +17,28 @@ using CoverMyMeds.SAML.Library.Schema;
 
 namespace CoverMyMeds.SAML.Library
 {
+    /// <summary>
+    /// Encapsulate functionality for building a SAML Response using the Schema object
+    ///     created by xsd.exe from the OASIS spec
+    /// </summary>
+    /// <remarks>Lots of guidance from this CodeProject implementation
+    ///     http://www.codeproject.com/Articles/56640/Performing-a-SAML-Post-with-C#xx0xx
+    /// </remarks>
     public class SAML20Assertion
     {
-        public string Target;
-        public List<KeyValuePair<string, string>> Attributes;
-
+        /// <summary>
+        /// Build a signed XML SAML Response string to be inlcuded in an HTML Form
+        /// for POSTing to a SAML Service Provider
+        /// </summary>
+        /// <param name="Issuer">Identity Provider - Used to match the certificate for verifying 
+        ///     Response signing</param>
+        /// <param name="AssertionExpirationMinutes">Assertion lifetime</param>
+        /// <param name="Audience"></param>
+        /// <param name="Subject"></param>
+        /// <param name="Recipient"></param>
+        /// <param name="Attributes">Dictionary of attributes to send through for user SSO</param>
+        /// <param name="SigningCert">X509 Certificate used to sign Assertion</param>
+        /// <returns></returns>
         public static string CreateSAML20Response(string Issuer,
             int AssertionExpirationMinutes,
             string Audience,
@@ -30,17 +47,16 @@ namespace CoverMyMeds.SAML.Library
             Dictionary<string, string> Attributes,
             X509Certificate2 SigningCert)
         {
-            // Create SAML Response
+            // Create SAML Response object with a unique ID and correct version
             ResponseType response = new ResponseType()
             {
                 ID = "_" + System.Guid.NewGuid().ToString(),
                 Version = "2.0",
                 IssueInstant = System.DateTime.UtcNow,
-                Destination = Recipient.Trim()
+                Destination = Recipient.Trim(),
+                Issuer = new NameIDType() { Value = Issuer.Trim() },
+                Status = new StatusType() { StatusCode = new StatusCodeType() { Value = "urn:oasis:names:tc:SAML:2.0:status:Success" } }
             };
-
-            response.Issuer = new NameIDType() { Value = Issuer.Trim() };
-            response.Status = new StatusType() { StatusCode = new StatusCodeType() { Value = "urn:oasis:names:tc:SAML:2.0:status:Success" } };
 
             // Put SAML 2.0 Assertion in Response
             response.Items = new AssertionType[] { CreateSAML20Assertion(Issuer, AssertionExpirationMinutes, Audience, Subject, Recipient, Attributes) };
@@ -50,61 +66,43 @@ namespace CoverMyMeds.SAML.Library
             return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(XMLResponse.OuterXml));
         }
 
-        private static XmlDocument SerializeAndSignSAMLResponse(ResponseType response,X509Certificate2 SigningCert)
+        /// <summary>
+        /// Accepts SAML Response, serializes it to XML and signs using the supplied certificate
+        /// </summary>
+        /// <param name="Response">SAML 2.0 Response</param>
+        /// <param name="SigningCert">X509 certificate</param>
+        /// <returns>XML Document with computed signature</returns>
+        private static XmlDocument SerializeAndSignSAMLResponse(ResponseType Response, X509Certificate2 SigningCert)
         {
-            // http://www.west-wind.com/weblog/posts/2008/Feb/23/Digitally-Signing-an-XML-Document-and-Verifying-the-Signature 
-            XmlDocument xmlResponse = SerializeResponseToXML(response);
+            // Set serializer and writers for action
+            XmlSerializer responseSerializer = new XmlSerializer(Response.GetType());
+            StringWriter stringWriter = new StringWriter();
+            XmlWriter responseWriter = XmlTextWriter.Create(stringWriter, new XmlWriterSettings() { OmitXmlDeclaration = true, Indent = true, Encoding = Encoding.UTF8 });
+            responseSerializer.Serialize(responseWriter, Response);
+            responseWriter.Close();
+            XmlDocument xmlResponse = new XmlDocument(); 
+            xmlResponse.LoadXml(stringWriter.ToString());
+
+            // Set the namespace for prettire and more consistent XML
             XmlNamespaceManager ns = new XmlNamespaceManager(xmlResponse.NameTable);
             ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
-            AssertionType assertion = (AssertionType)response.Items[0];
-            SignedXml signedXML = new SignedXml(xmlResponse);
 
-            signedXML.SigningKey = SigningCert.PrivateKey;
-            //signedXML.SignedInfo.SignatureMethod = SignedXml.XmlDsigEnvelopedSignatureTransformUrl;
-
-            // Key Info not needed at this point
-            //KeyInfo keyInfo = new KeyInfo();
-            //KeyInfoX509Data keyInfoData = new KeyInfoX509Data();
-            //keyInfoData.AddIssuerSerial(cert.Issuer, cert.GetSerialNumberString());
-            //keyInfo.AddClause(keyInfoData);
-
-            //signedXML.KeyInfo = keyInfo;
-
-            //signedXML.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigC14NTransformUrl;
-            signedXML.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
-
-            Reference reference = new Reference();
-            reference.Uri = "#" + assertion.ID;
-            //reference.Uri = assertion.ID;
-            reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
-            reference.AddTransform(new XmlDsigExcC14NTransform());
-            //reference.AddTransform(new XmlDs
-            signedXML.AddReference(reference);
-            signedXML.ComputeSignature();
-
-            XmlElement signature = signedXML.GetXml();
-
-            XmlElement xeResponse = xmlResponse.DocumentElement;
-            
-            xeResponse.AppendChild(signature);
+            CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, "#" + ((AssertionType)Response.Items[0]).ID, SigningCert);
 
             return xmlResponse;
         }
 
-        private static XmlDocument SerializeResponseToXML(ResponseType response)
-        {
-            XmlSerializer responseSerializer = new XmlSerializer(response.GetType());
-            StringWriter stringWriter = new StringWriter();
-            XmlDocument xmlRet = new XmlDocument();
-            XmlWriter responseWriter = XmlTextWriter.Create(stringWriter, new XmlWriterSettings() { OmitXmlDeclaration = true, Indent = true, Encoding = Encoding.UTF8 });
-            string SAMLString = string.Empty;
-            responseSerializer.Serialize(responseWriter, response);
-            responseWriter.Close();
-            xmlRet.LoadXml(stringWriter.ToString());
-
-            return xmlRet;
-        }
-
+        /// <summary>
+        /// Creates a SAML 2.0 Assertion Segment for a Response
+        /// Simple implmenetation assuming a list of string key and value pairs
+        /// </summary>
+        /// <param name="Issuer"></param>
+        /// <param name="AssertionExpirationMinutes"></param>
+        /// <param name="Audience"></param>
+        /// <param name="Subject"></param>
+        /// <param name="Recipient"></param>
+        /// <param name="Attributes">Dictionary of string key, string value pairs</param>
+        /// <returns>Assertion to sign and include in Response</returns>
         private static AssertionType CreateSAML20Assertion(string Issuer,
             int AssertionExpirationMinutes,
             string Audience,

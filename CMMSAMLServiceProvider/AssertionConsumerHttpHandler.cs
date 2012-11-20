@@ -35,16 +35,11 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
         private class AssertionData
         {
-            public Dictionary<string,string> SAMLAttributes
-            public string SessionKey;
-            public int UserNID;
-            public string Username;
-            public string LastName;
-            public string FirstName;
-            public int OfficeNID;
+            public Dictionary<string, string> SAMLAttributes;
 
             public AssertionData(AssertionType assertion)
             {
+                // Find the attribute statement within the assertion
                 AttributeStatementType ast = null;
                 foreach (StatementAbstractType sat in assertion.Items)
                 {
@@ -53,36 +48,35 @@ namespace CoverMyMeds.SAML.ServiceProvider
                         ast = (AttributeStatementType)sat;
                     }
                 }
+
                 if (ast == null) throw new ApplicationException("Invalid SAML Assertion: Missing Attribute Values");
+                SAMLAttributes = new Dictionary<string, string>();
+                // Do what needs to be done to pull specific attributes out for sending on
+                // For now assuming this is a simple list of string key and string values
                 foreach (AttributeType at in ast.Items)
                 {
-                    switch (at.Name)
-                    {
-                        case "SessionKey":
-                            if (at.AttributeValue.Length > 0) SessionKey = at.AttributeValue[0].ToString();
-                            break;
-                        case "UserNID":
-                            if (at.AttributeValue.Length > 0) UserNID = int.Parse(at.AttributeValue[0].ToString());
-                            break;
-                        case "Username":
-                            if (at.AttributeValue.Length > 0) Username = at.AttributeValue[0].ToString();
-                            break;
-                        case "UserLastName":
-                            if (at.AttributeValue.Length > 0) LastName = at.AttributeValue[0].ToString();
-                            break;
-                        case "UserFirstName":
-                            if (at.AttributeValue.Length > 0) FirstName = at.AttributeValue[0].ToString();
-                            break;
-                        case "OfficeNID":
-                            if (at.AttributeValue.Length > 0) OfficeNID = int.Parse( at.AttributeValue[0].ToString());
-                            break;
-                        //case "OfficeName":
-                        //    if (at.AttributeValue.Length > 0) SessionKey = at.AttributeValue[0].ToString();
-                        //    break;
-                        //case "OfficeFax":
-                        //    if (at.AttributeValue.Length > 0) SessionKey = at.AttributeValue[0].ToString();
-                        //    break;
-                    }
+                    SAMLAttributes.Add(at.Name, at.AttributeValue.ToString());
+                    //switch (at.Name)
+                    //{
+                    //    case "UserID":
+                    //        if (at.AttributeValue.Length > 0) UserID = at.AttributeValue[0].ToString();
+                    //        break;
+                    //    case "UserFirstName":
+                    //        if (at.AttributeValue.Length > 0) UserFirstName = int.Parse(at.AttributeValue[0].ToString());
+                    //        break;
+                    //    case "UserLastName":
+                    //        if (at.AttributeValue.Length > 0) UserLastName = at.AttributeValue[0].ToString();
+                    //        break;
+                    //    case "UserDisplayName":
+                    //        if (at.AttributeValue.Length > 0) UserDisplayName = at.AttributeValue[0].ToString();
+                    //        break;
+                    //    case "UserEmail":
+                    //        if (at.AttributeValue.Length > 0) UserEmail = at.AttributeValue[0].ToString();
+                    //        break;
+                    //    case "GroupID":
+                    //        if (at.AttributeValue.Length > 0) GroupID = int.Parse(at.AttributeValue[0].ToString());
+                    //        break;
+                    //}
                 }
             }
         }
@@ -115,9 +109,11 @@ namespace CoverMyMeds.SAML.ServiceProvider
                     AssertionType assertion = GetAssertionFromXMLDoc(SAMLXML);
                     if (assertion.Issuer.Value == ConfigurationManager.AppSettings["CertIssuer"])
                     {
-                        AssertionData NNData = new AssertionData(assertion);
+                        AssertionData SSOData = new AssertionData(assertion);
                     }
 
+                    // At this point any specific work that needs to be done to establish user context with
+                    // the SSOData should be executed before redirecting the user browser to the target
                     context.Response.Redirect(context.Request.Params["RelayState"].ToString());
 
                     break;
