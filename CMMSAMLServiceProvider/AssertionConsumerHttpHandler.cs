@@ -100,17 +100,22 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
                     // pull Base 64 encoded XML saml assertion from Request and decode it
                     XmlDocument SAMLXML = new XmlDocument();
-                    SAMLXML.LoadXml(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString())));
+                    SAMLXML.LoadXml(System.Text.Encoding.UTF8.GetString(
+                        Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString()))
+                        );
 
                     // Validate X509 Certificate Signature
-                    if (!ValidateX509CertificateSignature(SAMLXML)) context.Response.Redirect("ServiceProviderError.aspx");
+                    if (!ValidateX509CertificateSignature(SAMLXML))
+                    {
+                        context.Response.Redirect("ServiceProviderError.aspx");
+                    }
 
                     // Finding 
                     AssertionType assertion = GetAssertionFromXMLDoc(SAMLXML);
-                    if (assertion.Issuer.Value == ConfigurationManager.AppSettings["CertIssuer"])
-                    {
-                        AssertionData SSOData = new AssertionData(assertion);
-                    }
+                    //if (assertion.Issuer.Value == ConfigurationManager.AppSettings["CertIssuer"])
+                    //{
+                    //    AssertionData SSOData = new AssertionData(assertion);
+                    //}
 
                     // At this point any specific work that needs to be done to establish user context with
                     // the SSOData should be executed before redirecting the user browser to the target
@@ -120,19 +125,36 @@ namespace CoverMyMeds.SAML.ServiceProvider
             }
         }
 
+        private Stream GetStreamXmlElement(XmlElement xml)
+        {
+
+            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xml.OuterXml));
+
+            return ms;
+        }
+
         private AssertionType GetAssertionFromXMLDoc(XmlDocument SAMLXML)
         {
             XmlNamespaceManager ns = new XmlNamespaceManager(SAMLXML.NameTable);
-            ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
-            XmlElement xeAssertion = SAMLXML.DocumentElement.SelectSingleNode("saml:Assertion", ns) as XmlElement;
+            //ns.AddNamespace(String.Empty, "urn:oasis:names:tc:SAML:2.0:protocol");
+            //ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+            //ns.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            //ns.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
+            //XmlElement xeAssertion = SAMLXML.DocumentElement.SelectSingleNode("saml:Assertion", ns) as XmlElement;
 
-            XmlSerializer serializer = new XmlSerializer(typeof(AssertionType));
+            //XmlRootAttribute xRoot = new XmlRootAttribute();
+            //xRoot.ElementName = "assertion";
+            //xRoot.Namespace = "urn:oasis:names:tc:SAML:2.0:assertion";
 
-            MemoryStream ms = new MemoryStream();
+            //XmlSerializer serializer = new XmlSerializer(typeof(AssertionType));
+            XmlSerializer serializer = new XmlSerializer(typeof(ResponseType));
+            //XmlSerializerNamespaces nsSerial = new XmlSerializerNamespaces();
 
-            AssertionType assertion = (AssertionType)serializer.Deserialize(ms);
+            ResponseType response = (ResponseType)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(SAMLXML.OuterXml)));
 
-            return assertion;
+            //AssertionType assertion = (AssertionType)serializer.Deserialize(GetStreamXmlElement(xeAssertion));
+
+            return (AssertionType)response.Items[0]; // assertion;
         }
 
         private bool ValidateX509CertificateSignature(XmlDocument SAMLResponse)
@@ -141,11 +163,15 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
             // Checking If the Response or the Assertion has been signed once and only once.
             if (XMLSignatures.Count != 1) return false;
+
             SignedXml SignedSAML = new SignedXml(SAMLResponse);
             SignedSAML.LoadXml((XmlElement)XMLSignatures[0]);
 
             // Get X509 Certificate from Cert Store
-            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning("DodgeDerek", StoreName.Root, StoreLocation.LocalMachine);
+            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning(
+                ConfigurationManager.AppSettings["CertIssuer"], 
+                StoreName.Root, 
+                StoreLocation.LocalMachine);
 
             return SignedSAML.CheckSignature(SigningCert, true);
         }
