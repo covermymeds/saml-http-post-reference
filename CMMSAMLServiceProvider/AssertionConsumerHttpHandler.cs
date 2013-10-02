@@ -56,27 +56,6 @@ namespace CoverMyMeds.SAML.ServiceProvider
                 foreach (AttributeType at in ast.Items)
                 {
                     SAMLAttributes.Add(at.Name, at.AttributeValue.ToString());
-                    //switch (at.Name)
-                    //{
-                    //    case "UserID":
-                    //        if (at.AttributeValue.Length > 0) UserID = at.AttributeValue[0].ToString();
-                    //        break;
-                    //    case "UserFirstName":
-                    //        if (at.AttributeValue.Length > 0) UserFirstName = int.Parse(at.AttributeValue[0].ToString());
-                    //        break;
-                    //    case "UserLastName":
-                    //        if (at.AttributeValue.Length > 0) UserLastName = at.AttributeValue[0].ToString();
-                    //        break;
-                    //    case "UserDisplayName":
-                    //        if (at.AttributeValue.Length > 0) UserDisplayName = at.AttributeValue[0].ToString();
-                    //        break;
-                    //    case "UserEmail":
-                    //        if (at.AttributeValue.Length > 0) UserEmail = at.AttributeValue[0].ToString();
-                    //        break;
-                    //    case "GroupID":
-                    //        if (at.AttributeValue.Length > 0) GroupID = int.Parse(at.AttributeValue[0].ToString());
-                    //        break;
-                    //}
                 }
             }
         }
@@ -112,10 +91,10 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
                     // Finding 
                     AssertionType assertion = GetAssertionFromXMLDoc(SAMLXML);
-                    //if (assertion.Issuer.Value == ConfigurationManager.AppSettings["CertIssuer"])
-                    //{
-                    //    AssertionData SSOData = new AssertionData(assertion);
-                    //}
+                    if (assertion.Issuer.Value == ConfigurationManager.AppSettings["CertIssuer"])
+                    {
+                        AssertionData SSOData = new AssertionData(assertion);
+                    }
 
                     // At this point any specific work that needs to be done to establish user context with
                     // the SSOData should be executed before redirecting the user browser to the target
@@ -125,36 +104,14 @@ namespace CoverMyMeds.SAML.ServiceProvider
             }
         }
 
-        private Stream GetStreamXmlElement(XmlElement xml)
-        {
-
-            MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xml.OuterXml));
-
-            return ms;
-        }
-
         private AssertionType GetAssertionFromXMLDoc(XmlDocument SAMLXML)
         {
-            XmlNamespaceManager ns = new XmlNamespaceManager(SAMLXML.NameTable);
-            //ns.AddNamespace(String.Empty, "urn:oasis:names:tc:SAML:2.0:protocol");
-            //ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
-            //ns.AddNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            //ns.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
-            //XmlElement xeAssertion = SAMLXML.DocumentElement.SelectSingleNode("saml:Assertion", ns) as XmlElement;
-
-            //XmlRootAttribute xRoot = new XmlRootAttribute();
-            //xRoot.ElementName = "assertion";
-            //xRoot.Namespace = "urn:oasis:names:tc:SAML:2.0:assertion";
-
-            //XmlSerializer serializer = new XmlSerializer(typeof(AssertionType));
             XmlSerializer serializer = new XmlSerializer(typeof(ResponseType));
-            //XmlSerializerNamespaces nsSerial = new XmlSerializerNamespaces();
 
-            ResponseType response = (ResponseType)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(SAMLXML.OuterXml)));
+            ResponseType response = (ResponseType)serializer.Deserialize(
+                new MemoryStream(Encoding.UTF8.GetBytes(SAMLXML.OuterXml)));
 
-            //AssertionType assertion = (AssertionType)serializer.Deserialize(GetStreamXmlElement(xeAssertion));
-
-            return (AssertionType)response.Items[0]; // assertion;
+            return (AssertionType)response.Items[0];
         }
 
         private bool ValidateX509CertificateSignature(XmlDocument SAMLResponse)
