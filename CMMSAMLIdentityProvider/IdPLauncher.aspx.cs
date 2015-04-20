@@ -56,7 +56,9 @@ namespace CoverMyMeds.SAML.IdentityProvider
             }
 
             // get the certificate
-            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning(ddlIssuer.SelectedValue, StoreName.Root, StoreLocation.LocalMachine);
+            //X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning(ddlIssuer.SelectedValue, StoreName.Root, StoreLocation.LocalMachine);
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/SSOTest.pfx");
+            X509Certificate2 SigningCert = new X509Certificate2(CertPath, "Misha365");
             
             // Add base 64 encoded SAML Response to form for POST 
             SAMLResponse.Value = SAML20Assertion.CreateSAML20Response(ddlIssuer.SelectedItem.Text, 5, "Audience", "Subject", "Recipient", SAMLAttributes, SigningCert);

@@ -100,7 +100,8 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
                     // pull Base 64 encoded XML saml assertion from Request and decode it
                     XmlDocument SAMLXML = new XmlDocument();
-                    SAMLXML.LoadXml(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString())));
+                    String SAMLResponseString = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString()));
+                    SAMLXML.LoadXml(SAMLResponseString);
 
                     // Validate X509 Certificate Signature
                     if (!ValidateX509CertificateSignature(SAMLXML)) context.Response.Redirect("ServiceProviderError.aspx");
@@ -128,9 +129,10 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
             XmlSerializer serializer = new XmlSerializer(typeof(AssertionType));
 
-            MemoryStream ms = new MemoryStream();
+            // MemoryStream ms = new MemoryStream();
+            
 
-            AssertionType assertion = (AssertionType)serializer.Deserialize(ms);
+            AssertionType assertion = (AssertionType)serializer.Deserialize(new XmlNodeReader(xeAssertion));
 
             return assertion;
         }
@@ -145,7 +147,10 @@ namespace CoverMyMeds.SAML.ServiceProvider
             SignedSAML.LoadXml((XmlElement)XMLSignatures[0]);
 
             // Get X509 Certificate from Cert Store
-            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning("DodgeDerek", StoreName.Root, StoreLocation.LocalMachine);
+            // X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning("SSOTest", StoreName.Root, StoreLocation.LocalMachine);
+
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/SSOTest.cer");
+            X509Certificate2 SigningCert = new X509Certificate2(CertPath, "Misha365");
 
             return SignedSAML.CheckSignature(SigningCert, true);
         }

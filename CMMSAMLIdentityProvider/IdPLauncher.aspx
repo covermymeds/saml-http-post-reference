@@ -36,7 +36,8 @@
                         Service Provider URL
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSPURL" runat="server" Text="https://devsso.covermymeds.com/consume"></asp:TextBox>
+                        <asp:TextBox ID="txtSPURL" runat="server" Text="http://localhost:40728/ServiceProviderDefault.aspx"></asp:TextBox>
+                        <%--<asp:TextBox ID="txtSPURL" runat="server" Text="https://master-sso.integration.covermymeds.com/consume"></asp:TextBox>--%>
                         <asp:DropDownList ID="ddlSPUrl" Visible="false" Width="100%" runat="server">
                             <asp:ListItem Text="Webstage 2 Port 50333" Value="http://webstage2:50333/consume"
                                 Selected="True" />
@@ -50,7 +51,8 @@
                         Target
                     </td>
                     <td>
-                        <asp:TextBox ID="txtTarget" runat="server" Text="https://staging.covermymeds.com/request/new"></asp:TextBox>
+                        <asp:TextBox ID="txtTarget" runat="server" Text="http://localhost:2456/"></asp:TextBox>
+                        <%--<asp:TextBox ID="txtTarget" runat="server" Text="https://master-sso.integration.covermymeds.com/authenticated"></asp:TextBox>--%>
                     </td>
                 </tr>
                 <tr>

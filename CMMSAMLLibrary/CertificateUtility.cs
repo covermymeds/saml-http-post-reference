@@ -62,7 +62,8 @@ namespace CoverMyMeds.SAML.Library
             signedXML.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
 
             Reference reference = new Reference();
-            reference.Uri = "#" + ReferenceURI;
+            reference.Uri = ReferenceURI;
+            //reference.Uri = "#" + ReferenceURI;
             reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
             reference.AddTransform(new XmlDsigExcC14NTransform());
             signedXML.AddReference(reference);
