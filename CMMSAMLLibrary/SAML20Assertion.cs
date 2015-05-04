@@ -27,7 +27,7 @@ namespace CoverMyMeds.SAML.Library
     public class SAML20Assertion
     {
         /// <summary>
-        /// Build a signed XML SAML Response string to be inlcuded in an HTML Form
+        /// Build a signed XML SAML Response string to be included in an HTML Form
         /// for POSTing to a SAML Service Provider
         /// </summary>
         /// <param name="Issuer">Identity Provider - Used to match the certificate for verifying 
@@ -55,11 +55,17 @@ namespace CoverMyMeds.SAML.Library
                 IssueInstant = System.DateTime.UtcNow,
                 Destination = Recipient.Trim(),
                 Issuer = new NameIDType() { Value = Issuer.Trim() },
-                Status = new StatusType() { StatusCode = new StatusCodeType() { Value = "urn:oasis:names:tc:SAML:2.0:status:Success" } }
+                Status = new StatusType() { 
+                    StatusCode = new StatusCodeType() { 
+                        Value = "urn:oasis:names:tc:SAML:2.0:status:Success" 
+                    } 
+                }
             };
 
             // Put SAML 2.0 Assertion in Response
-            response.Items = new AssertionType[] { CreateSAML20Assertion(Issuer, AssertionExpirationMinutes, Audience, Subject, Recipient, Attributes) };
+            response.Items = new AssertionType[] { 
+                CreateSAML20Assertion(Issuer, AssertionExpirationMinutes, Audience, Subject, Recipient, Attributes) 
+            };
 
             XmlDocument XMLResponse = SerializeAndSignSAMLResponse(response, SigningCert);
 
@@ -77,17 +83,21 @@ namespace CoverMyMeds.SAML.Library
             // Set serializer and writers for action
             XmlSerializer responseSerializer = new XmlSerializer(Response.GetType());
             StringWriter stringWriter = new StringWriter();
-            XmlWriter responseWriter = XmlTextWriter.Create(stringWriter, new XmlWriterSettings() { OmitXmlDeclaration = true, Indent = true, Encoding = Encoding.UTF8 });
+            XmlWriter responseWriter = XmlTextWriter.Create(
+                stringWriter, 
+                new XmlWriterSettings() { OmitXmlDeclaration = true, Indent = true, Encoding = Encoding.UTF8 }
+                );
             responseSerializer.Serialize(responseWriter, Response);
             responseWriter.Close();
             XmlDocument xmlResponse = new XmlDocument(); 
             xmlResponse.LoadXml(stringWriter.ToString());
 
-            // Set the namespace for prettire and more consistent XML
+            // Set the namespace for prettier and more consistent XML
             XmlNamespaceManager ns = new XmlNamespaceManager(xmlResponse.NameTable);
-            ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+            //ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
 
-            CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, "#" + ((AssertionType)Response.Items[0]).ID, SigningCert);
+            CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, 
+                "#" + ((AssertionType)Response.Items[0]).ID, SigningCert);
 
             return xmlResponse;
         }
@@ -122,8 +132,18 @@ namespace CoverMyMeds.SAML.Library
 
             // Create Assertion Subject
             SubjectType subject = new SubjectType();
-            NameIDType subjectNameIdentifier = new NameIDType() { Value = Subject.Trim(), Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" };
-            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer", SubjectConfirmationData = new SubjectConfirmationDataType() { NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes), Recipient = Recipient } };
+            NameIDType subjectNameIdentifier = new NameIDType() { 
+                Value = Subject.Trim(), Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:unspecified" 
+            };
+
+            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { 
+                Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer", 
+                SubjectConfirmationData = new SubjectConfirmationDataType() { 
+                    NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes), 
+                    Recipient = Recipient 
+                } 
+            };
+
             subject.Items = new object[] { subjectNameIdentifier, subjectConfirmation };
             NewAssertion.Subject = subject;
 
@@ -133,11 +153,14 @@ namespace CoverMyMeds.SAML.Library
             conditions.NotBeforeSpecified = true;
             conditions.NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes);
             conditions.NotOnOrAfterSpecified = true;
-            conditions.Items = new ConditionAbstractType[] { new AudienceRestrictionType() { Audience = new string[] { Audience.Trim() } } };
+            conditions.Items = new ConditionAbstractType[] { 
+                new AudienceRestrictionType() { Audience = new string[] { Audience.Trim() } } };
             NewAssertion.Conditions = conditions;
 
             // Add AuthnStatement and Attributes as Items
-            AuthnStatementType authStatement = new AuthnStatementType() { AuthnInstant = DateTime.UtcNow, SessionIndex = NewAssertion.ID };
+            AuthnStatementType authStatement = new AuthnStatementType() { 
+                AuthnInstant = DateTime.UtcNow, 
+                SessionIndex = NewAssertion.ID };
             AuthnContextType context = new AuthnContextType();
             context.ItemsElementName = new ItemsChoiceType5[] { ItemsChoiceType5.AuthnContextClassRef };
             context.Items = new object[] { "urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified" };

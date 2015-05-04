@@ -1,6 +1,12 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69862991-B2B1-46E1-BBE0-CA284D07F686}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMMSAMLLibrary", "CMMSAMLLibrary\CMMSAMLLibrary.csproj", "{B0895A78-818D-4FAB-AAAF-A8E6EC05C473}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMMSAMLSSOTarget", "CMMSAMLSSOTarget\CMMSAMLSSOTarget.csproj", "{F4A5DF72-B406-4BFA-8371-AA3C7340FFC4}"
@@ -8,12 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMMSAMLServiceProvider", "CMMSAMLServiceProvider\CMMSAMLServiceProvider.csproj", "{45016DD2-24AF-43E9-96E4-7571FDA92841}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMMSAMLIdentityProvider", "CMMSAMLIdentityProvider\CMMSAMLIdentityProvider.csproj", "{3A6CC1C0-DD6D-4A28-90F8-C1553589997B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69862991-B2B1-46E1-BBE0-CA284D07F686}"
-	ProjectSection(SolutionItems) = preProject
-		LICENSE.md = LICENSE.md
-		README.md = README.md
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
