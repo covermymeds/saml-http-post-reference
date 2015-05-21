@@ -67,15 +67,6 @@ namespace CoverMyMeds.SAML.IdentityProvider {
         protected global::System.Web.UI.WebControls.TextBox txtIssuer;
         
         /// <summary>
-        /// ddlIssuer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIssuer;
-        
-        /// <summary>
         /// txtSPURL control.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace CoverMyMeds.SAML.IdentityProvider {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSPURL;
-        
-        /// <summary>
-        /// ddlSPUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSPUrl;
         
         /// <summary>
         /// txtTarget control.

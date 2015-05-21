@@ -25,10 +25,6 @@
                     </td>
                     <td>
                         <asp:TextBox Visible="False" ID="txtIssuer" runat="server" Text="CMMTest.com"></asp:TextBox>
-                        <asp:DropDownList Width="100%" ID="ddlIssuer" runat="server">
-                            <asp:ListItem Value="SSOTest" Text="CMMTest.com" Selected="True"></asp:ListItem>
-                            <asp:ListItem Value="navinet.test1.qa" Text="navinet.test1.qa" Enabled="false"></asp:ListItem>
-                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -37,13 +33,6 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtSPURL" runat="server" Text="http://localhost:40728/ServiceProviderDefault.aspx"></asp:TextBox>
-                        <%--<asp:TextBox ID="txtSPURL" runat="server" Text="https://master-sso.integration.covermymeds.com/consume"></asp:TextBox>--%>
-                        <asp:DropDownList ID="ddlSPUrl" Visible="false" Width="100%" runat="server">
-                            <asp:ListItem Text="Webstage 2 Port 50333" Value="http://webstage2:50333/consume"
-                                Selected="True" />
-                            <asp:ListItem Text="Dev CoverMyMeds SSO" Value="https://devsso.covermymeds.com/" />
-                            <asp:ListItem Text="CoverMyMeds SSO" Value="https://sso.covermymeds.com/" />
-                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -51,8 +40,7 @@
                         Target
                     </td>
                     <td>
-                        <asp:TextBox ID="txtTarget" runat="server" Text="http://localhost:2456/"></asp:TextBox>
-                        <%--<asp:TextBox ID="txtTarget" runat="server" Text="https://master-sso.integration.covermymeds.com/authenticated"></asp:TextBox>--%>
+                        <asp:TextBox ID="txtTarget" runat="server" Text="http://localhost:2456/PromisedLand.aspx"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
