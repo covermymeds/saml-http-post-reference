@@ -96,7 +96,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SSOTest.cer" />
+    <Content Include="App_Data\CoverMyMeds.cer" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

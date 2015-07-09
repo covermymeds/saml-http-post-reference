@@ -97,8 +97,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SSOTest.cer" />
-    <Content Include="App_Data\SSOTest.pfx" />
+    <Content Include="App_Data\CoverMyMeds.pfx" />
     <None Include="Properties\PublishProfiles\mitestplatform1.pubxml" />
   </ItemGroup>
   <ItemGroup />
