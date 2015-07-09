@@ -152,7 +152,7 @@ namespace CoverMyMeds.SAML.ServiceProvider
             SignedXml SignedSAML = new SignedXml(SAMLResponse);
             SignedSAML.LoadXml((XmlElement)XMLSignatures[0]);
 
-            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/SSOTest.cer");
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/CoverMyMeds.cer");
             X509Certificate2 SigningCert = new X509Certificate2(CertPath);
 
             return SignedSAML.CheckSignature(SigningCert, true);

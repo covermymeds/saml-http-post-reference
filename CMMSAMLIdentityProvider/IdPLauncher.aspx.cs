@@ -56,8 +56,8 @@ namespace CoverMyMeds.SAML.IdentityProvider
             }
 
             // get the certificate
-            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/SSOTest.pfx");
-            X509Certificate2 SigningCert = new X509Certificate2(CertPath, "Misha365");
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/CoverMyMeds.pfx");
+            X509Certificate2 SigningCert = new X509Certificate2(CertPath, "4CoverMyMeds");
             
             // Add base 64 encoded SAML Response to form for POST
             String NameID = String.Empty;
