@@ -49,8 +49,13 @@ namespace CoverMyMeds.SAML.ServiceProvider
                     }
                 }
 
-                if (ast == null) throw new ApplicationException("Invalid SAML Assertion: Missing Attribute Values");
+                if (ast == null)
+                {
+                    throw new ApplicationException("Invalid SAML Assertion: Missing Attribute Values");
+                }
+
                 SAMLAttributes = new Dictionary<string, string>();
+
                 // Do what needs to be done to pull specific attributes out for sending on
                 // For now assuming this is a simple list of string key and string values
                 foreach (AttributeType at in ast.Items)
@@ -100,10 +105,15 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
                     // pull Base 64 encoded XML saml assertion from Request and decode it
                     XmlDocument SAMLXML = new XmlDocument();
-                    SAMLXML.LoadXml(System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString())));
+                    String SAMLResponseString = System.Text.Encoding.UTF8.GetString(
+                        Convert.FromBase64String(context.Request.Params["SAMLResponse"].ToString()));
+                    SAMLXML.LoadXml(SAMLResponseString);
 
                     // Validate X509 Certificate Signature
-                    if (!ValidateX509CertificateSignature(SAMLXML)) context.Response.Redirect("ServiceProviderError.aspx");
+                    if (!ValidateX509CertificateSignature(SAMLXML))
+                    {
+                        context.Response.Redirect("ServiceProviderError.aspx");
+                    }
 
                     // Finding 
                     AssertionType assertion = GetAssertionFromXMLDoc(SAMLXML);
@@ -128,9 +138,7 @@ namespace CoverMyMeds.SAML.ServiceProvider
 
             XmlSerializer serializer = new XmlSerializer(typeof(AssertionType));
 
-            MemoryStream ms = new MemoryStream();
-
-            AssertionType assertion = (AssertionType)serializer.Deserialize(ms);
+            AssertionType assertion = (AssertionType)serializer.Deserialize(new XmlNodeReader(xeAssertion));
 
             return assertion;
         }
@@ -144,8 +152,8 @@ namespace CoverMyMeds.SAML.ServiceProvider
             SignedXml SignedSAML = new SignedXml(SAMLResponse);
             SignedSAML.LoadXml((XmlElement)XMLSignatures[0]);
 
-            // Get X509 Certificate from Cert Store
-            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning("DodgeDerek", StoreName.Root, StoreLocation.LocalMachine);
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/CoverMyMeds.cer");
+            X509Certificate2 SigningCert = new X509Certificate2(CertPath);
 
             return SignedSAML.CheckSignature(SigningCert, true);
         }

@@ -50,7 +50,7 @@ namespace CoverMyMeds.SAML.Library
             // Create SAML Response object with a unique ID and correct version
             ResponseType response = new ResponseType()
             {
-                ID = "_" + System.Guid.NewGuid().ToString(),
+                //ID = "_" + System.Guid.NewGuid().ToString(),
                 Version = "2.0",
                 IssueInstant = System.DateTime.UtcNow,
                 Destination = Recipient.Trim(),
