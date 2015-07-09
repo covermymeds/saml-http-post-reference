@@ -56,20 +56,21 @@ namespace CoverMyMeds.SAML.IdentityProvider
             }
 
             // get the certificate
-            X509Certificate2 SigningCert = CertificateUtility.GetCertificateForSigning(ddlIssuer.SelectedValue, StoreName.Root, StoreLocation.LocalMachine);
+            String CertPath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/CoverMyMeds.pfx");
+            X509Certificate2 SigningCert = new X509Certificate2(CertPath, "4CoverMyMeds");
             
-            // Add base 64 encoded SAML Response to form for POST 
-            SAMLResponse.Value = SAML20Assertion.CreateSAML20Response(ddlIssuer.SelectedItem.Text, 5, "Audience", "Subject", "Recipient", SAMLAttributes, SigningCert);
+            // Add base 64 encoded SAML Response to form for POST
+            String NameID = String.Empty;
+            if (!string.IsNullOrEmpty(txtNameID.Text))
+            {
+                NameID = txtNameID.Text;
+            }
+
+            SAMLResponse.Value = SAML20Assertion.CreateSAML20Response(
+               txtIssuer.Text, 5, "Audience", NameID, "Recipient", SAMLAttributes, SigningCert);
 
             // Set Body page load action
-            if (string.IsNullOrEmpty(txtSPURL.Text))
-            {
-                frmIdPLauncher.Action = ddlSPUrl.SelectedValue;
-            }
-            else
-            {
-                frmIdPLauncher.Action = txtSPURL.Text;
-            }
+            frmIdPLauncher.Action = txtSPURL.Text;
 
             // add javascript to HTTP POST to the SSO configured
             // This implements the IdP-initiated HTTP POST use case
