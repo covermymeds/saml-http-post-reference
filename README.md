@@ -3,7 +3,7 @@ A reference implementation of a SAML 2.0 identity provider (IdP) and a service p
 
 Specification standard [documented here](http://saml.xml.org/wiki/idp-initiated-single-sign-on-post-binding)
 
-This reference Visual Studio 2010 solution includes 4 C# projects:
+This reference Visual Studio 2013 solution includes 4 C# projects:
 
 *	CMMSAMLIdentityProvider - A web application project that provides an interface for gathering user and group attributes and sending it as an IdP initiated HTTP Post. Configurable values include certificate for signing, assertion attributes, Service Provider SSO url and target.
 *	CMMSAMLLibrary - Class project for encapsulating common functionality. An XSD.exe generated class for the SAML 2.0 specification is included.
