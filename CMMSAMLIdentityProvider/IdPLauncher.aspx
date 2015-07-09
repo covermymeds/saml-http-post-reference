@@ -24,7 +24,7 @@
                         Issuer
                     </td>
                     <td>
-                        <asp:TextBox Visible="False" ID="txtIssuer" runat="server" Text="CMMTest.com"></asp:TextBox>
+                        <asp:TextBox ID="txtIssuer" runat="server" Text="CMMTest.com"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -47,6 +47,14 @@
                     <td>
                     </td>
                     <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px;">
+                        Name ID
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtNameID" runat="server"></asp:TextBox>
                     </td>
                 </tr>
             </table>
