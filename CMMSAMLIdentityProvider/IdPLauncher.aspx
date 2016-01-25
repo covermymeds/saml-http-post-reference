@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <td style="width: 150px;">
-                        Issuer
+                        Audience
                     </td>
                     <td>
                         <asp:TextBox ID="txtAudience" runat="server" Text="audience"></asp:TextBox>
