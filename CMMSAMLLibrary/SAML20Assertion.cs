@@ -123,7 +123,13 @@ namespace CoverMyMeds.SAML.Library
             // Create Assertion Subject
             SubjectType subject = new SubjectType();
             NameIDType subjectNameIdentifier = new NameIDType() { Value = Subject.Trim(), Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" };
-            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer", SubjectConfirmationData = new SubjectConfirmationDataType() { NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes), Recipient = Recipient } };
+            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { 
+                Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer",
+                SubjectConfirmationData = new SubjectConfirmationDataType() { 
+                    NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes),
+                    Recipient = Recipient
+                }
+            };
             subject.Items = new object[] { subjectNameIdentifier, subjectConfirmation };
             NewAssertion.Subject = subject;
 
