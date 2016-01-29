@@ -88,6 +88,7 @@ namespace CoverMyMeds.SAML.Library
             ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
 
             CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, "#" + ((AssertionType)Response.Items[0]).ID, SigningCert);
+            //CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, ((AssertionType)Response.Items[0]).ID, SigningCert);
 
             return xmlResponse;
         }
@@ -114,7 +115,8 @@ namespace CoverMyMeds.SAML.Library
             {
                 Version = "2.0",
                 IssueInstant = System.DateTime.UtcNow,
-                ID = "_" + System.Guid.NewGuid().ToString()
+                // ID = "_" + System.Guid.NewGuid().ToString(),
+                ID = System.Guid.NewGuid().ToString().Replace("-", "")
             };
 
             // Create Issuer
