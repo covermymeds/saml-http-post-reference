@@ -88,6 +88,7 @@ namespace CoverMyMeds.SAML.Library
             ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
 
             CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, "#" + ((AssertionType)Response.Items[0]).ID, SigningCert);
+            //CertificateUtility.AppendSignatureToXMLDocument(ref xmlResponse, ((AssertionType)Response.Items[0]).ID, SigningCert);
 
             return xmlResponse;
         }
@@ -114,7 +115,8 @@ namespace CoverMyMeds.SAML.Library
             {
                 Version = "2.0",
                 IssueInstant = System.DateTime.UtcNow,
-                ID = "_" + System.Guid.NewGuid().ToString()
+                // ID = "_" + System.Guid.NewGuid().ToString(),
+                ID = System.Guid.NewGuid().ToString().Replace("-", "")
             };
 
             // Create Issuer
@@ -123,7 +125,13 @@ namespace CoverMyMeds.SAML.Library
             // Create Assertion Subject
             SubjectType subject = new SubjectType();
             NameIDType subjectNameIdentifier = new NameIDType() { Value = Subject.Trim(), Format = "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified" };
-            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer", SubjectConfirmationData = new SubjectConfirmationDataType() { NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes), Recipient = Recipient } };
+            SubjectConfirmationType subjectConfirmation = new SubjectConfirmationType() { 
+                Method = "urn:oasis:names:tc:SAML:2.0:cm:bearer",
+                SubjectConfirmationData = new SubjectConfirmationDataType() { 
+                    NotOnOrAfter = DateTime.UtcNow.AddMinutes(AssertionExpirationMinutes),
+                    Recipient = Recipient
+                }
+            };
             subject.Items = new object[] { subjectNameIdentifier, subjectConfirmation };
             NewAssertion.Subject = subject;
 

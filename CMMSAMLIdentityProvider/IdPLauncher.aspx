@@ -28,6 +28,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td style="width: 150px;">
+                        Audience
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtAudience" runat="server" Text="audience"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         Service Provider URL
                     </td>

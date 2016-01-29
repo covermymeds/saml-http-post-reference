@@ -36,24 +36,21 @@ namespace CoverMyMeds.SAML.Library
             ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
             XmlElement xeAssertion = XMLSerializedSAMLResponse.DocumentElement.SelectSingleNode("saml:Assertion", ns) as XmlElement;
 
-            //SignedXml signedXML = new SignedXml(XMLSerializedSAMLResponse);
             SignedXml signedXML = new SignedXml(xeAssertion);
 
             signedXML.SigningKey = SigningCert.PrivateKey;
             signedXML.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
 
-            Reference reference = new Reference();
-            reference.Uri = ReferenceURI;
+            Reference reference = new Reference(ReferenceURI);
             reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
-            reference.AddTransform(new XmlDsigExcC14NTransform());
+            reference.AddTransform(new XmlDsigExcC14NTransform("http://www.w3.org/2001/10/xml-exc-c14n#"));
+            
             signedXML.AddReference(reference);
             signedXML.ComputeSignature();
 
             XmlElement signature = signedXML.GetXml();
 
-            XmlElement xeResponse = XMLSerializedSAMLResponse.DocumentElement;
-
-            xeResponse.AppendChild(signature);
+            xeAssertion.AppendChild(signature);
         }
     }
 }

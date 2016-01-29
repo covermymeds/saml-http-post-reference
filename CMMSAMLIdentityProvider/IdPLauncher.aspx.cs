@@ -65,9 +65,14 @@ namespace CoverMyMeds.SAML.IdentityProvider
             {
                 NameID = txtNameID.Text;
             }
+            String Audience = String.Empty;
+            if (!string.IsNullOrEmpty(txtAudience.Text))
+            {
+                Audience = txtAudience.Text;
+            }
 
             SAMLResponse.Value = SAML20Assertion.CreateSAML20Response(
-               txtIssuer.Text, 5, "Audience", NameID, "Recipient", SAMLAttributes, SigningCert);
+               txtIssuer.Text, 5, Audience, NameID, "Recipient", SAMLAttributes, SigningCert);
 
             // Set Body page load action
             frmIdPLauncher.Action = txtSPURL.Text;
