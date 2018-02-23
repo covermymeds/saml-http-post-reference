@@ -49,11 +49,10 @@ namespace CoverMyMeds.SAML.Library
             signedXML.AddReference(reference);
             signedXML.ComputeSignature();
 
-            XmlElement signature = signedXML.GetXml();
+			XmlElement signature = signedXML.GetXml();
 
-            XmlElement xeResponse = XMLSerializedSAMLResponse.DocumentElement;
-
-            xeResponse.AppendChild(signature);
+			XmlElement xeIssuer = xeAssertion.SelectSingleNode("saml:Issuer", ns) as XmlElement;
+			xeAssertion.InsertAfter(signature, xeIssuer);
         }
     }
 }
