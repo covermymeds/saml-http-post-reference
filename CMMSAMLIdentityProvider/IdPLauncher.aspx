@@ -32,7 +32,7 @@
                         Service Provider URL
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSPURL" runat="server" Text="https://ehr4-sso.testing.covermymeds.com/consume"></asp:TextBox>
+                        <asp:TextBox ID="txtSPURL" runat="server" Text="http://localhost:40728/ServiceProviderDefault.aspx"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                         Target
                     </td>
                     <td>
-                        <asp:TextBox ID="txtTarget" runat="server" Text="https://ehr4-sso.testing.covermymeds.com/authenticated"></asp:TextBox>
+                        <asp:TextBox ID="txtTarget" runat="server" Text="http://localhost:2456/PromisedLand.aspx"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
