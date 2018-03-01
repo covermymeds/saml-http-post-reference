@@ -54,7 +54,7 @@
                         Name ID
                     </td>
                     <td>
-                        <asp:TextBox ID="txtNameID" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNameID" runat="server" Text="hsimpson"></asp:TextBox>
                     </td>
                 </tr>
             </table>

@@ -50,7 +50,7 @@ namespace CoverMyMeds.SAML.Library
             // Create SAML Response object with a unique ID and correct version
             ResponseType response = new ResponseType()
             {
-                //ID = "_" + System.Guid.NewGuid().ToString(),
+                ID = "_" + System.Guid.NewGuid().ToString(),
                 Version = "2.0",
                 IssueInstant = System.DateTime.UtcNow,
                 Destination = Recipient.Trim(),
@@ -83,7 +83,7 @@ namespace CoverMyMeds.SAML.Library
             XmlDocument xmlResponse = new XmlDocument(); 
             xmlResponse.LoadXml(stringWriter.ToString());
 
-            // Set the namespace for prettire and more consistent XML
+            // Set the namespace for prettier and more consistent XML
             XmlNamespaceManager ns = new XmlNamespaceManager(xmlResponse.NameTable);
             ns.AddNamespace("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
 
@@ -164,3 +164,5 @@ namespace CoverMyMeds.SAML.Library
 
     }
 }
+
+
